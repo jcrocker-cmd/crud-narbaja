@@ -8,7 +8,7 @@ on:
 
 jobs:
   laravel-tests:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v4
@@ -53,4 +53,4 @@ jobs:
       run: |
        echo "$SSH_KEY" > id_rsa
         chmod 600 id_rsa
-        rsync -avz -e "ssh -i id_rsa -o StrictHostKeyChecking=no" ./ ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_PUBLIC_IP }}:/path/to/your/deployment-directory
+        rsync -avz -e "ssh -i id_rsa -o StrictHostKeyChecking=no" ./ ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_PUBLIC_IP }}:/home/ec2-user/my-laravel-app
